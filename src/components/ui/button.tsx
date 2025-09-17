@@ -15,6 +15,11 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        healing: "bg-gradient-healing text-white shadow-healing hover:shadow-warm transition-all duration-300 hover:scale-105",
+        gold: "bg-gold text-gold-foreground shadow-warm hover:bg-gold/90 transition-all duration-300",
+        gentle: "bg-gradient-warm text-foreground shadow-soft hover:shadow-healing border border-primary/20 transition-all duration-300",
+        doctor: "bg-primary text-primary-foreground hover:bg-primary-glow shadow-healing transition-all duration-300",
+        patient: "bg-secondary text-secondary-foreground hover:bg-gold/20 border border-gold transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",

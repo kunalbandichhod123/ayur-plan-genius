@@ -22,10 +22,15 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          foreground: "hsl(var(--gold-foreground))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -63,6 +68,17 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      backgroundImage: {
+        'gradient-healing': 'var(--gradient-healing)',
+        'gradient-primary': 'var(--gradient-primary)',
+        'gradient-subtle': 'var(--gradient-subtle)',
+        'gradient-warm': 'var(--gradient-warm)',
+      },
+      boxShadow: {
+        'healing': 'var(--shadow-healing)',
+        'warm': 'var(--shadow-warm)',
+        'soft': 'var(--shadow-soft)',
+      },
       keyframes: {
         "accordion-down": {
           from: {
@@ -80,10 +96,54 @@ export default {
             height: "0",
           },
         },
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)"
+          }
+        },
+        "gentle-bounce": {
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-5px)",
+          }
+        },
+        "healing-pulse": {
+          "0%, 100%": {
+            boxShadow: "0 0 0 0 hsl(var(--primary) / 0.4)",
+          },
+          "50%": {
+            boxShadow: "0 0 0 10px hsl(var(--primary) / 0)",
+          },
+        },
+        "lotus-bloom": {
+          "0%": {
+            transform: "scale(0.8) rotate(-5deg)",
+            opacity: "0.8"
+          },
+          "50%": {
+            transform: "scale(1.05) rotate(2deg)",
+            opacity: "0.9"
+          },
+          "100%": {
+            transform: "scale(1) rotate(0deg)",
+            opacity: "1"
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.6s ease-out",
+        "gentle-bounce": "gentle-bounce 2s ease-in-out infinite",
+        "healing-pulse": "healing-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "lotus-bloom": "lotus-bloom 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
       },
     },
   },
