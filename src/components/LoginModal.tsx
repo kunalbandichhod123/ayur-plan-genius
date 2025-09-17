@@ -10,9 +10,10 @@ import { useToast } from "@/hooks/use-toast";
 interface LoginModalProps {
   type: 'doctor' | 'patient';
   onClose: () => void;
+  onLoginSuccess: (type: 'doctor' | 'patient') => void;
 }
 
-const LoginModal = ({ type, onClose }: LoginModalProps) => {
+const LoginModal = ({ type, onClose, onLoginSuccess }: LoginModalProps) => {
   const [step, setStep] = useState<'login' | 'otp'>('login');
   const [loginMethod, setLoginMethod] = useState<'phone' | 'email'>('phone');
   const [formData, setFormData] = useState({
@@ -37,8 +38,8 @@ const LoginModal = ({ type, onClose }: LoginModalProps) => {
       title: "Login Successful!",
       description: `Welcome to your ${type} dashboard`,
     });
+    onLoginSuccess(type);
     onClose();
-    // Navigate to appropriate dashboard
   };
 
   return (

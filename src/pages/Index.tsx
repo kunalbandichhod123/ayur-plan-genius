@@ -4,9 +4,33 @@ import { Card } from "@/components/ui/card";
 import { useState } from "react";
 import { UserCheck, Stethoscope, Leaf, Heart, Users, Calendar } from "lucide-react";
 import LoginModal from "@/components/LoginModal";
+import DoctorDashboard from "@/components/DoctorDashboard";
+import PatientDashboard from "@/components/PatientDashboard";
 
 const Index = () => {
   const [loginType, setLoginType] = useState<'doctor' | 'patient' | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userType, setUserType] = useState<'doctor' | 'patient' | null>(null);
+
+  const handleLoginSuccess = (type: 'doctor' | 'patient') => {
+    setIsLoggedIn(true);
+    setUserType(type);
+    setLoginType(null);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserType(null);
+  };
+
+  // If logged in, show appropriate dashboard
+  if (isLoggedIn && userType === 'doctor') {
+    return <DoctorDashboard />;
+  }
+
+  if (isLoggedIn && userType === 'patient') {
+    return <PatientDashboard onLogout={handleLogout} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
@@ -122,7 +146,8 @@ const Index = () => {
       {loginType && (
         <LoginModal 
           type={loginType} 
-          onClose={() => setLoginType(null)} 
+          onClose={() => setLoginType(null)}
+          onLoginSuccess={handleLoginSuccess}
         />
       )}
     </div>
